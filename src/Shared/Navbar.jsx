@@ -8,7 +8,7 @@ import "aos/dist/aos.css";
 import { TiShoppingCart } from "react-icons/ti";
 import useCartData from "../hooks/useCartData/useCartData";
 import { getLocalstorageData } from "../localstorage/localstorage";
-import jasshop from "../assets/jasshop.PNG"
+import logo from "../assets/logo.png"
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(true); 
@@ -58,7 +58,7 @@ const Navbar = () => {
             </button>
           )}
         </div>
-        <span><img className="w-20" src={jasshop} alt="" /></span>
+        <span><img className="w-20" src={logo} alt="" /></span>
       </div>
       <div>
         <ul

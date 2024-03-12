@@ -1,9 +1,9 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css"; 
 import { Carousel } from 'react-responsive-carousel';
-import goods from "../../../assets/goods.jpg"
-import female from "../../../assets/female.jpg"
-import shirt from "../../../assets/shirt.jpg"
-import watch from "../../../assets/watch.jpg"
+import mern from "../../../assets/banner/mern.png"
+import react from "../../../assets/banner/react.png"
+import node from "../../../assets/banner/node.png"
+import dj from "../../../assets/banner/dj.png"
 
 
 const Banner = () => {
@@ -11,16 +11,16 @@ const Banner = () => {
 <div className="text-center">
 <Carousel autoPlay={true} infiniteLoop={true} interval={3000} showThumbs={false}>
     <div>
-        <img src={goods}/>
+        <img src={mern}/>
     </div>
     <div>
-        <img src={female} />
+        <img src={react} />
     </div>
     <div>
-        <img src={shirt} />
+        <img src={node} />
     </div>
     <div>
-        <img src={watch} />
+        <img src={dj} />
     </div>
 </Carousel>
 </div>

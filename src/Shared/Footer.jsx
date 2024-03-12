@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import jasshop from "../assets/jasshop.PNG";
+import logo from "../assets/logo.png";
 
 const Footer = () => {
   return (
     <footer className=" flex md:justify-evenly p-10 bg-neutral text-neutral-content">
       <aside>
-        <img className="w-20" src={jasshop} alt="" />
+        <img className="w-20" src={logo} alt="" />
         <p>
           JasShop Online LTD.
         </p>
