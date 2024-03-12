@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Amita:wght@400;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.secondary-banner .active{
+  border: 5px solid  rgb(21 94 117);
+}
+
+.discount-number{
+        position: relative;
+        animation: moveRight 2s ease-in-out infinite alternate;
+}
+
+@keyframes moveRight {
+  0% {
+    transform: rotate(-20deg);
+  }
+  100% {
+    transform: rotate(20deg);
+  }
+}
+
+
+
+.secondaryMenu .active{
+    background-color: orangered;
+}
+
+@media (min-width: 1024px) {
+  @keyframes moveRight {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: 200px;
+    }
+  }  
+}
+@media (min-width: 768px) {
+  @keyframes moveRight {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: 140px;
+    }
+  }  
+}
