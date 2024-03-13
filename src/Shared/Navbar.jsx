@@ -18,6 +18,7 @@ const Navbar = () => {
   const cartLocal = getLocalstorageData()
 
   const email = newUser?.email;
+  console.log(newUser?.displayName)
 
   const handleLogout = () => {
     logOut().then(() => navigate("/"));
@@ -36,12 +37,16 @@ const Navbar = () => {
       <li data-aos="zoom-in">
         <NavLink>Home</NavLink>
       </li>
-      <li data-aos="zoom-in">
+      {
+        !email && <>
+              <li data-aos="zoom-in">
         <NavLink to="/login">Login</NavLink>
       </li>
       <li data-aos="zoom-in">
         <NavLink to="/register">Register</NavLink>
       </li>
+        </>
+      }
     </>
   );
   return (
@@ -90,7 +95,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {newUser?.displayName ? (
+      {email ? (
         <div className="dropdown dropdown-end">
           <div tabIndex={0} role="button">
             <img
