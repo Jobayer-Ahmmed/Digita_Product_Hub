@@ -6,6 +6,7 @@ import Login from "../Pages/Login/Login.jsx";
 import Carts from "../Pages/Cart/Carts.jsx";
 import ErrorPage from "../Pages/Error/ErrorPage.jsx";
 import AdminLogin from "../adminSystem/dashboard/Login/AdminLogin.jsx";
+import AdminPanel from "../Layouts/AdminPanel.jsx";
 
 
 
@@ -32,14 +33,19 @@ const routes = createBrowserRouter([
                 path:"/cart",
                 element:<Carts/>
             },
-
-
         ]
     },
     {
-        path: "/admin/login",
-        element: <AdminLogin/>
+        path:"/admin",
+        element:<AdminPanel/>,
+        children:[
+            {
+                path: "/admin",
+                element: <AdminLogin/>
+            }
+        ]
     }
+
 ])
 
 export default routes

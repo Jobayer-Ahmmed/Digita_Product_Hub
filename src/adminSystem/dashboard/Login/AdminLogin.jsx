@@ -57,7 +57,7 @@ const AdminLogin = () => {
 
   return (
     <div
-      className="py-yPadding w-full flex justify-center "
+      className=" w-full flex justify-center "
       data-aos="fade-right"
     >
       <div className="p-10 border rounded-lg shadow-xl">
