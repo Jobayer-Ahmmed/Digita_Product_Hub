@@ -10,7 +10,8 @@ export default {
         clifford: '#da373d',
         btnColor: "#ff6347",
         hoverColor: "#ff4500",
-        priColor: "rgb(21 94 117)"
+        priColor: "rgb(21 94 117)",
+        adminColor: "#FF6347"
 
 
  

@@ -2,11 +2,11 @@ import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { TbEye, TbEyeClosed } from "react-icons/tb";
 
 import Swal from "sweetalert2";
-import { Context } from "../../../context/AuthProvider";
+import { Context } from "../../context/AuthProvider";
 
 const AdminLogin = () => {
   const [passwordVisiblity, setPasswordVisiblity] = useState("password");

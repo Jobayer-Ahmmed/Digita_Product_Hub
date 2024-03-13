@@ -5,10 +5,9 @@ import Register from "../Pages/Register/Register.jsx"
 import Login from "../Pages/Login/Login.jsx";
 import Carts from "../Pages/Cart/Carts.jsx";
 import ErrorPage from "../Pages/Error/ErrorPage.jsx";
-import AdminLogin from "../adminSystem/dashboard/Login/AdminLogin.jsx";
 import AdminPanel from "../Layouts/AdminPanel.jsx";
-
-
+import AdminLogin from "../adminSystem/Login/AdminLogin.jsx";
+import Dashboard from "../adminSystem/dashboard/dashboard/Dashboard.jsx";
 
 
 const routes = createBrowserRouter([
@@ -42,6 +41,10 @@ const routes = createBrowserRouter([
             {
                 path: "/admin",
                 element: <AdminLogin/>
+            },
+            {
+                path:"/admin/dashboard",
+                element:<Dashboard/>
             }
         ]
     }
