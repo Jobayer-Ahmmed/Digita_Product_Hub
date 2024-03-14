@@ -13,6 +13,7 @@ import AddCourse from "../adminSystem/dashboard/addCourse/AddCourse.jsx";
 import EditCourse from "../adminSystem/dashboard/editCourse/EditCourse.jsx";
 import SeeCourse from "../adminSystem/dashboard/seeCourses/SeeCourse.jsx";
 import URL from "../URL/URL.js";
+import AddEvent from "../adminSystem/dashboard/addEvent/AddEvent.jsx";
 
 
 const routes = createBrowserRouter([
@@ -69,6 +70,10 @@ const routes = createBrowserRouter([
                         path:"/admin/dashboard/course/:id",
                         element: <EditCourse/>,
                         loader: async ({params})=> fetch(`${URL}/admin/dashboard/course/${params.id}`)
+                    },
+                    {
+                        path:"/admin/dashboard/event/add",
+                        element:<AddEvent/>
                     }
                 ]
             }
