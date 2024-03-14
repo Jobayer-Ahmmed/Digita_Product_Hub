@@ -8,6 +8,8 @@ import ErrorPage from "../Pages/Error/ErrorPage.jsx";
 import AdminPanel from "../Layouts/AdminPanel.jsx";
 import AdminLogin from "../adminSystem/Login/AdminLogin.jsx";
 import Dashboard from "../adminSystem/dashboard/dashboard/Dashboard.jsx";
+import DashboardHome from "../adminSystem/dashboard/dashboardHome/DashboardHome.jsx";
+import AddCourse from "../adminSystem/dashboard/addCourse/AddCourse.jsx";
 
 
 const routes = createBrowserRouter([
@@ -44,7 +46,17 @@ const routes = createBrowserRouter([
             },
             {
                 path:"/admin/dashboard",
-                element:<Dashboard/>
+                element:<Dashboard/>,
+                children:[
+                    {
+                        path:"/admin/dashboard",
+                        element:<DashboardHome/>
+                    },
+                    {
+                        path:"/admin/dashboard/add_course",
+                        element:<AddCourse/>
+                    }
+                ]
             }
         ]
     }
