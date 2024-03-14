@@ -5,13 +5,12 @@ import Discount from "../Discount/Discount"
 import Card from "../../Card/Card"
 
 const Home = () => {
-
-
-  return (
+  const title = "Our Courses"
+  return (    
     <div className="-z-20">
       <Banner/>
       <Discount/>
-      <Card/>
+      <Card title={title}/>
       <Outlet/>
 
     </div>

@@ -14,6 +14,7 @@ const AddCourse = () => {
   const rootAxios = useAxios()
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm();
@@ -30,10 +31,8 @@ const AddCourse = () => {
         },
       })
       .then((res) => {
-        console.log(res.data.data.display_url);
-        console.log(course_name);
           if (res) {
-            rootAxios.post("/course", { course_name,course_image:res.data.data.display_url, course_description })
+            rootAxios.post("/admin/dashboard/course", { course_name,course_image:res.data.data.display_url, course_description })
             .then(()=>{
               Swal.fire({
                 position: "center",
@@ -42,6 +41,7 @@ const AddCourse = () => {
                 showConfirmButton: false,
                 timer: 2000,
               })
+              reset()
             })
           }
       });

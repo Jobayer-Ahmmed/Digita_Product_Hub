@@ -10,6 +10,9 @@ import AdminLogin from "../adminSystem/Login/AdminLogin.jsx";
 import Dashboard from "../adminSystem/dashboard/dashboard/Dashboard.jsx";
 import DashboardHome from "../adminSystem/dashboard/dashboardHome/DashboardHome.jsx";
 import AddCourse from "../adminSystem/dashboard/addCourse/AddCourse.jsx";
+import EditCourse from "../adminSystem/dashboard/editCourse/EditCourse.jsx";
+import SeeCourse from "../adminSystem/dashboard/seeCourses/SeeCourse.jsx";
+import URL from "../URL/URL.js";
 
 
 const routes = createBrowserRouter([
@@ -34,6 +37,7 @@ const routes = createBrowserRouter([
                 path:"/cart",
                 element:<Carts/>
             },
+
         ]
     },
     {
@@ -53,8 +57,18 @@ const routes = createBrowserRouter([
                         element:<DashboardHome/>
                     },
                     {
-                        path:"/admin/dashboard/add_course",
+                        path:"/admin/dashboard/course/add",
                         element:<AddCourse/>
+                    },
+                    {
+                        path:"/admin/dashboard/course",
+                        element:<SeeCourse/>
+
+                    },
+                    {
+                        path:"/admin/dashboard/course/:id",
+                        element: <EditCourse/>,
+                        loader: async ({params})=> fetch(`${URL}/admin/dashboard/course/${params.id}`)
                     }
                 ]
             }

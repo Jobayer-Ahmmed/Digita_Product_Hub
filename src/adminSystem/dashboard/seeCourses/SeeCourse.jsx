@@ -1,22 +1,36 @@
 import { Link } from "react-router-dom";
-import "./card.css";
+import "./seeCourse.css";
 import { useEffect, useState } from "react";
-import useAxios from "../../hooks/useAxios/useAxios";
-import PropTypes from 'prop-types'
+import useAxios from "../../../hooks/useAxios/useAxios";
+import Swal from "sweetalert2";
 
 
-const Card = ({ title}) => {
+const SeeCourse= () => {
   const [allData, setAllData] = useState([])
   const rootAxios = useAxios()
+  
+  const handleDelete=(id)=>{
+    rootAxios.delete(`/admin/dashboard/course/${id}`)
+    .then(()=>{
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Delete Successfull",
+        showConfirmButton: false,
+        timer: 2000,
+      })
+    })
+  }
+
   useEffect(()=>{
-    rootAxios.get("/course")
+    rootAxios.get("/admin/dashboard/course")
     .then(res=>setAllData(res.data))
-  },[])
+  },[rootAxios])
 
   return (
     <div className="mb-myMargin px-xPadding2 md:px-xPadding">
       <h1 className="text-4xl font-medium text-center mb-titleMargin">
-        {title}
+        Courses
       </h1>
       <div className="flex justify-center text-gray-600">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -31,9 +45,11 @@ const Card = ({ title}) => {
               </div>
               <div className="project_info_parent w-full h-full absolute rounded-lg top-0 bg-transparent "></div>
               <div className="project_info absolute p-5">
-                <p className=" mb-6 text-lg">{data.course_description}</p>
-                <Link to={data.link} className="btn btn-outline text-lg">
-                  See Details
+                <Link to={`/admin/dashboard/course/${data._id}`} className="btn btn-outline text-lg">
+                  Edit
+                </Link>
+                <Link onClick={()=>handleDelete(data._id)} className="btn btn-outline text-lg ml-10">
+                  Delete
                 </Link>
               </div>
             </div>
@@ -44,8 +60,5 @@ const Card = ({ title}) => {
   );
 };
 
-Card.propTypes={
-  title: PropTypes.string
-}
 
-export default Card
+export default SeeCourse
