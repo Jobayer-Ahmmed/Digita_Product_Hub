@@ -7,7 +7,7 @@ const AdminMenu = () => {
         <NavLink className="text-gray-100">Dashboard</NavLink>
         <NavLink to="/admin/dashboard/course" className="text-gray-100">See Courses</NavLink>
         <NavLink to="/admin/dashboard/course/add" className="text-gray-100">Add Course</NavLink>
-        <NavLink className="text-gray-100">See Event</NavLink>
+        <NavLink to="/admin/dashboard/event" className="text-gray-100">See Event</NavLink>
         <NavLink to="/admin/dashboard/event/add" className="text-gray-100">Add Event</NavLink>
         <NavLink className="text-gray-100">Sales Analytics</NavLink>
         <NavLink className="text-gray-100">Logout</NavLink>

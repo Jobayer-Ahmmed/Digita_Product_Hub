@@ -1,0 +1,21 @@
+.project_info_parent{
+    transition: .6s;
+}
+
+.project:hover .project_info_parent{
+    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0,0,0,.75));
+}
+
+.project_info{
+    bottom: 0;
+    opacity: 0;
+    transition: .6s;
+    transform: translateY(40px);
+    color: white !important;
+    
+}
+.project:hover .project_info{
+    opacity: 1;
+    /* background: linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6) ); */
+    transform: translateY(-20px);
+}

@@ -20,9 +20,9 @@ const AddEvent = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    const { course_name,course_image, course_description } = data;
+    const { event_name,event_image, event_description } = data;
 
-    const imageFile = { image: course_image[0] };
+    const imageFile = { image: event_image[0] };
 
     axios
       .post(image_upload_api, imageFile, {
@@ -31,8 +31,9 @@ const AddEvent = () => {
         },
       })
       .then((res) => {
+        // console.log(res.data.data.display_url)
           if (res) {
-            rootAxios.post("/admin/dashboard/event", { course_name,course_image:res.data.data.display_url, course_description })
+            rootAxios.post("/admin/dashboard/event", { event_name,event_image:res.data.data.display_url, event_description })
             .then(()=>{
               Swal.fire({
                 position: "center",
@@ -69,7 +70,7 @@ const AddEvent = () => {
             })}
             className="w-64 md:w-80 h-10 px-2 rounded "
           />
-          {errors.course_name && (
+          {errors.event_name && (
             <p className="text-red-700">{errors.event_name.message}</p>
           )}
           <br />
@@ -79,8 +80,8 @@ const AddEvent = () => {
           <br />
           <input
             type="file"
-            {...register("course_image", {
-              required: "Course Image is required",
+            {...register("event_image", {
+              required: "Event Image is required",
             })}
             className="file-input file-input-bordered w-64 md:w-80 h-10 text-white"
           />
@@ -89,9 +90,9 @@ const AddEvent = () => {
           )}
           <br />
           <textarea
-            placeholder="Course Description"
-            {...register("course_description", {
-              required: "Course Description is required",
+            placeholder="Event Description"
+            {...register("event_description", {
+              required: "Event Description is required",
             })}
             className="w-64 md:w-80 h-40 px-2 mt-4 rounded "
           />

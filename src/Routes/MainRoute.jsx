@@ -14,6 +14,7 @@ import EditCourse from "../adminSystem/dashboard/editCourse/EditCourse.jsx";
 import SeeCourse from "../adminSystem/dashboard/seeCourses/SeeCourse.jsx";
 import URL from "../URL/URL.js";
 import AddEvent from "../adminSystem/dashboard/addEvent/AddEvent.jsx";
+import SeeEvent from "../adminSystem/dashboard/seeEvents/SeeEvent.jsx";
 
 
 const routes = createBrowserRouter([
@@ -74,6 +75,10 @@ const routes = createBrowserRouter([
                     {
                         path:"/admin/dashboard/event/add",
                         element:<AddEvent/>
+                    },
+                    {
+                        path:"/admin/dashboard/event",
+                        element: <SeeEvent/>
                     }
                 ]
             }
