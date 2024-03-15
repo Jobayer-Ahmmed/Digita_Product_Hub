@@ -19,6 +19,8 @@ import Profile from "../Pages/profile/Profile.jsx";
 import CardDetails from "../Pages/Card/CardDetails.jsx";
 import ToEnroll from "../Pages/toEnroll/ToEnroll.jsx";
 import Payment from "../Pages/toEnroll/Payment.jsx";
+import EditUsername from "../Pages/editProfile/EditUsername.jsx";
+import EditImage from "../Pages/editProfile/EditImage.jsx";
 
 
 const routes = createBrowserRouter([
@@ -57,6 +59,14 @@ const routes = createBrowserRouter([
             {
                 path:"/course/conform-payment",
                 element:<Payment/>
+            },
+            {
+                path:"/edit-username",
+                element:<EditUsername/>
+            },
+            {
+                path:"/edit-image",
+                element:<EditImage/>
             }
 
         ]

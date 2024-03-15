@@ -19,7 +19,7 @@ const image_upload_key = import.meta.env.VITE_image_uploaded_key
 const image_upload_api = `https://api.imgbb.com/1/upload?key=${image_upload_key}`;
 
 const Register = () => {
-  const { createUser, postLocalDataInDB } = useContext(Context);
+  const { createUser } = useContext(Context);
   const navigate = useNavigate();
   const [passwordVisiblity, setPasswordVisiblity] = useState("password");
   const [confirmPasswordVisiblity, setConfirmPasswordVisiblity] =
@@ -59,7 +59,6 @@ const Register = () => {
                   displayName: username,
                   photoURL: res.data.data.display_url,
                 }).then(() => {
-                  postLocalDataInDB(email);
                   Swal.fire({
                     position: "center",
                     icon: "success",

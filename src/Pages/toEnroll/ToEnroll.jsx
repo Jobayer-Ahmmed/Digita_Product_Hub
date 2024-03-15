@@ -5,7 +5,6 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import useAxios from "../../hooks/useAxios/useAxios";
 
 
 const ToEnroll = () => {
@@ -14,7 +13,6 @@ const ToEnroll = () => {
     const navigate = useNavigate()
     const email = newUser?.email
     const username = newUser?.displayName
-  const rootAxios = useAxios()
   const {
     register,
     handleSubmit,
