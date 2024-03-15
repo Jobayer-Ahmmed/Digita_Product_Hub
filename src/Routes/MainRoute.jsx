@@ -3,7 +3,6 @@ import MainLayout from "../Layouts/MainLayout";
 import Home from "../Pages/Home/Home/Home";
 import Register from "../Pages/Register/Register.jsx"
 import Login from "../Pages/Login/Login.jsx";
-import Carts from "../Pages/Cart/Carts.jsx";
 import ErrorPage from "../Pages/Error/ErrorPage.jsx";
 import AdminPanel from "../Layouts/AdminPanel.jsx";
 import AdminLogin from "../adminSystem/Login/AdminLogin.jsx";
@@ -18,6 +17,8 @@ import SeeEvent from "../adminSystem/dashboard/seeEvents/SeeEvent.jsx";
 import EditEvent from "../adminSystem/dashboard/editEvent/EditEvent.jsx";
 import Profile from "../Pages/profile/Profile.jsx";
 import CardDetails from "../Pages/Card/CardDetails.jsx";
+import ToEnroll from "../Pages/toEnroll/ToEnroll.jsx";
+import Payment from "../Pages/toEnroll/Payment.jsx";
 
 
 const routes = createBrowserRouter([
@@ -38,10 +39,7 @@ const routes = createBrowserRouter([
                 path:"/login",
                 element:<Login/>
             },
-            {
-                path:"/cart",
-                element:<Carts/>
-            },
+
             {
                 path: "/profile",
                 element:<Profile/>
@@ -50,6 +48,15 @@ const routes = createBrowserRouter([
                 path:"/course/:id",
                 element:<CardDetails/>,
                 loader: async ({params})=> fetch(`${URL}/admin/dashboard/course/${params.id}`)
+            },
+            {
+                path:"/course/to-enroll/:id",
+                element:<ToEnroll/>,
+                loader: async ({params})=> fetch(`${URL}/admin/dashboard/course/${params.id}`)
+            },
+            {
+                path:"/course/conform-payment",
+                element:<Payment/>
             }
 
         ]

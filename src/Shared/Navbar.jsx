@@ -5,7 +5,6 @@ import { useContext, useEffect, useState } from "react";
 import { Context } from "../context/AuthProvider";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { TiShoppingCart } from "react-icons/ti";
 import logo from "../assets/logo.png"
 
 const Navbar = () => {
@@ -74,12 +73,6 @@ const Navbar = () => {
           <div className="w-full flex justify-between">
             <div className="rounded text-lg hidden lg:block font-medium text-center text-white ">
               <ul className="flex justify-center gap-10">{navlinks}</ul>
-            </div>
-            <div className="ml-0 lg:ml-16">
-              <TiShoppingCart
-                onClick={() => navigate("/cart")}
-                className="text-4xl cursor-pointer"
-              />
             </div>
           </div>
         </div>

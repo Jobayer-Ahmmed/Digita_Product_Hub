@@ -7,14 +7,15 @@ import {
   signOut,
 } from "firebase/auth";
 import auth from "../firebase/firebase.config";
-import useAxios from "../hooks/useAxios/useAxios";
+
 
 export const Context = createContext();
 
 const AuthProvider = ({ children }) => {
   const [newUser, setNewUser] = useState();
   const [loading, setLoading] = useState(true);
-
+  const [store, setStore] = useState({})
+  
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -28,6 +29,12 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signOut(auth);
   };
+
+  const handleStore =(name, email, course_name, course_fee)=>{
+    console.log(name, email, course_name, course_fee)
+    return setStore({name, email, course_name, course_fee})    
+  }
+
 
 
   useEffect(() => {
@@ -44,6 +51,8 @@ const AuthProvider = ({ children }) => {
     logOut,
     createUser,
     loading,
+    store,
+    handleStore,
   };
 
   return <Context.Provider value={contextData}>{children}</Context.Provider>;
