@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
 import "./card.css";
 import { useEffect, useState } from "react";
-import useAxios from "../../hooks/useAxios/useAxios";
 import PropTypes from 'prop-types'
+import useAxios from "../../hooks/useAxios/useAxios";
 
 
 const Card = ({ title}) => {
   const [allData, setAllData] = useState([])
   const rootAxios = useAxios()
   useEffect(()=>{
-    rootAxios.get("/course")
+    rootAxios.get("/admin/dashboard/course")
     .then(res=>setAllData(res.data))
   },[])
 
@@ -31,8 +31,7 @@ const Card = ({ title}) => {
               </div>
               <div className="project_info_parent w-full h-full absolute rounded-lg top-0 bg-transparent "></div>
               <div className="project_info absolute p-5">
-                <p className=" mb-6 text-lg">{data.course_description}</p>
-                <Link to={data.link} className="btn btn-outline text-lg">
+                <Link to={`/course/${data._id}`} className="btn btn-outline text-lg">
                   See Details
                 </Link>
               </div>

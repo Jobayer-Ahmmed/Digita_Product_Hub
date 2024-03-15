@@ -10,6 +10,7 @@ const AdminMenu = () => {
         <NavLink to="/admin/dashboard/event" className="text-gray-100">See Event</NavLink>
         <NavLink to="/admin/dashboard/event/add" className="text-gray-100">Add Event</NavLink>
         <NavLink className="text-gray-100">Sales Analytics</NavLink>
+        <NavLink className="text-gray-100">Enrollment Details</NavLink>
         <NavLink className="text-gray-100">Logout</NavLink>
       </div>
     </aside>

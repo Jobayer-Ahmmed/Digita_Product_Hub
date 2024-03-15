@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { CgMenuCake } from "react-icons/cg";
 import { RxCross2 } from "react-icons/rx";
 import { useContext, useEffect, useState } from "react";
@@ -6,19 +6,14 @@ import { Context } from "../context/AuthProvider";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { TiShoppingCart } from "react-icons/ti";
-import useCartData from "../hooks/useCartData/useCartData";
-import { getLocalstorageData } from "../localstorage/localstorage";
 import logo from "../assets/logo.png"
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(true); 
   const { newUser, logOut } = useContext(Context);
   const navigate = useNavigate();
-  const cartDB = useCartData()
-  const cartLocal = getLocalstorageData()
 
   const email = newUser?.email;
-  console.log(newUser?.displayName)
 
   const handleLogout = () => {
     logOut().then(() => navigate("/"));
@@ -86,11 +81,6 @@ const Navbar = () => {
                 className="text-4xl cursor-pointer"
               />
             </div>
-            <div className="w-8 h-6 rounded-full bg-red-700 flex justify-center items-center -ml-4 -mt-2">
-              <p className="text-white flex justify-center ">
-                <small>{email? cartDB?.length : cartLocal?.length}</small>
-              </p>
-            </div>
           </div>
         </div>
       </div>
@@ -109,6 +99,7 @@ const Navbar = () => {
             className="dropdown-content z-[1] text-lg menu py-4 pl-10 shadow bg-base-100 rounded-box w-52"
           >
             <li>{newUser.displayName}</li>
+            <li className="cursor-pointer mt-3"><Link to="/profile">Profile</Link></li>
             <li onClick={handleLogout} className="cursor-pointer mt-3">
               Log Out
             </li>

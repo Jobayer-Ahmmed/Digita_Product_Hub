@@ -16,6 +16,8 @@ import URL from "../URL/URL.js";
 import AddEvent from "../adminSystem/dashboard/addEvent/AddEvent.jsx";
 import SeeEvent from "../adminSystem/dashboard/seeEvents/SeeEvent.jsx";
 import EditEvent from "../adminSystem/dashboard/editEvent/EditEvent.jsx";
+import Profile from "../Pages/profile/Profile.jsx";
+import CardDetails from "../Pages/Card/CardDetails.jsx";
 
 
 const routes = createBrowserRouter([
@@ -40,6 +42,15 @@ const routes = createBrowserRouter([
                 path:"/cart",
                 element:<Carts/>
             },
+            {
+                path: "/profile",
+                element:<Profile/>
+            },
+            {
+                path:"/course/:id",
+                element:<CardDetails/>,
+                loader: async ({params})=> fetch(`${URL}/admin/dashboard/course/${params.id}`)
+            }
 
         ]
     },
@@ -86,6 +97,7 @@ const routes = createBrowserRouter([
                         element: <EditEvent/>,
                         loader: async ({params})=> fetch(`${URL}/admin/dashboard/event/${params.id}`)
                     },
+
                 ]
             }
         ]
