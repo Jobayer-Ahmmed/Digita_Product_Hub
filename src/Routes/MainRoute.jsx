@@ -21,6 +21,7 @@ import ToEnroll from "../Pages/toEnroll/ToEnroll.jsx";
 import Payment from "../Pages/toEnroll/Payment.jsx";
 import EditUsername from "../Pages/editProfile/EditUsername.jsx";
 import EditImage from "../Pages/editProfile/EditImage.jsx";
+import PrivateRoute from "./PrivateRoute.jsx";
 
 
 const routes = createBrowserRouter([
@@ -44,29 +45,29 @@ const routes = createBrowserRouter([
 
             {
                 path: "/profile",
-                element:<Profile/>
+                element:<PrivateRoute><Profile/></PrivateRoute>
             },
             {
                 path:"/course/:id",
-                element:<CardDetails/>,
+                element: <PrivateRoute><CardDetails/></PrivateRoute>, 
                 loader: async ({params})=> fetch(`${URL}/admin/dashboard/course/${params.id}`)
             },
             {
                 path:"/course/to-enroll/:id",
-                element:<ToEnroll/>,
+                element:<PrivateRoute><ToEnroll/></PrivateRoute>,
                 loader: async ({params})=> fetch(`${URL}/admin/dashboard/course/${params.id}`)
             },
             {
                 path:"/course/conform-payment",
-                element:<Payment/>
+                element:<PrivateRoute><Payment/></PrivateRoute>
             },
             {
                 path:"/edit-username",
-                element:<EditUsername/>
+                element:<PrivateRoute><EditUsername/></PrivateRoute>
             },
             {
                 path:"/edit-image",
-                element:<EditImage/>
+                element:<PrivateRoute><EditImage/></PrivateRoute>
             }
 
         ]

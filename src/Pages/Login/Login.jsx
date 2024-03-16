@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { TbEye, TbEyeClosed } from "react-icons/tb";
 import { Context } from "../../context/AuthProvider";
 import Swal from "sweetalert2";
@@ -11,12 +11,12 @@ const Login = () => {
   const [passwordVisiblity, setPasswordVisiblity] = useState("password");
   const [passwordTrigger, setPasswordTrigger] = useState(false);
   const navigate = useNavigate()
-  const {login, postLocalDataInDB} = useContext(Context)
+  const {login} = useContext(Context)
+  const location = useLocation()
 
   const {
     register,
     handleSubmit, 
-    watch,
     formState: { errors },
   } = useForm();
 
@@ -26,7 +26,6 @@ const Login = () => {
 
     login(email, password)
     .then(()=>{
-      postLocalDataInDB(email)
       Swal.fire({
         position: "center",
         icon: "success",
@@ -35,7 +34,7 @@ const Login = () => {
         timer: 1500
       })
 
-      navigate("/")
+      navigate(location?.state ? location?.state: '/')
     })
   };
 

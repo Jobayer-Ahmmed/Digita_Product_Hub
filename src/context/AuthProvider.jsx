@@ -7,7 +7,7 @@ import {
   signOut,
 } from "firebase/auth";
 import auth from "../firebase/firebase.config";
-
+import PropTypes from 'prop-types';
 
 export const Context = createContext();
 
@@ -44,6 +44,7 @@ const AuthProvider = ({ children }) => {
     });
     return () => unSubscribe();
   }, []);
+  
 
   const contextData = {
     newUser,
@@ -58,4 +59,7 @@ const AuthProvider = ({ children }) => {
   return <Context.Provider value={contextData}>{children}</Context.Provider>;
 };
 
+AuthProvider.propTypes = {
+  children: PropTypes.node,
+}
 export default AuthProvider;

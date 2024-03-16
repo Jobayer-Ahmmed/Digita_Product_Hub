@@ -14,6 +14,7 @@ import {
   loadCaptchaEnginge,
   validateCaptcha,
 } from "react-simple-captcha";
+import useAxios from "../../hooks/useAxios/useAxios";
 
 const image_upload_key = import.meta.env.VITE_image_uploaded_key
 const image_upload_api = `https://api.imgbb.com/1/upload?key=${image_upload_key}`;
@@ -22,17 +23,17 @@ const Register = () => {
   const { createUser } = useContext(Context);
   const navigate = useNavigate();
   const [passwordVisiblity, setPasswordVisiblity] = useState("password");
-  const [confirmPasswordVisiblity, setConfirmPasswordVisiblity] =
-    useState("password");
+  const [confirmPasswordVisiblity, setConfirmPasswordVisiblity] =useState("password");
   const [passwordTrigger, setPasswordTrigger] = useState(false);
   const [confirmPasswordTrigger, setConfirmPasswordTrigger] = useState(false);
-
+  const rootAxios = useAxios()
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
+  const ref_id = new Date().getTime();
 
   const getCaptcha = watch("captcha");
 
@@ -59,24 +60,26 @@ const Register = () => {
                   displayName: username,
                   photoURL: res.data.data.display_url,
                 }).then(() => {
-                  Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Registration successfull",
-                    showConfirmButton: false,
-                    timer: 1500,
-                  });
+                  rootAxios.post("/user", {username, email, ref_id})
+                  .then(()=>{
+                    Swal.fire({
+                      position: "center",
+                      icon: "success",
+                      title: "Registration successfull",
+                      showConfirmButton: false,
+                      timer: 1500,
+                    });
+  
+                    navigate("/");
+                  })
 
-                  navigate("/");
+
                 });
               }
-
-              // pushing data in database
             });
         });
       }
     } else {
-      // setIsConfirm(true);
       console.log("Password doesnt match");
     }
   };
@@ -104,8 +107,8 @@ const Register = () => {
   }, []);
   useEffect(() => {
     AOS.init({
-      duration: 1000, // Animation duration in milliseconds
-      easing: "ease-in-out", // Easing function for the animation
+      duration: 1000,
+      easing: "ease-in-out",
     });
   }, []);
 
