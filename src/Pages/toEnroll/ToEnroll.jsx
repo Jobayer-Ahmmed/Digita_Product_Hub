@@ -1,21 +1,21 @@
-import { useContext, useState } from "react"
-import { useLoaderData, useNavigate } from "react-router-dom"
-import { Context } from "../../context/AuthProvider"
+import { useContext, useState } from "react";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import { Context } from "../../context/AuthProvider";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import useAxios from "../../hooks/useAxios/useAxios";
 
-
 const ToEnroll = () => {
-    const {course_name, course_fee} = useLoaderData()
-    const {newUser, handleStore} = useContext(Context)
-    const [errMsg, setErrMsg] = useState()
-    const navigate = useNavigate()
-    const rootAxios = useAxios()
-    const email = newUser?.email
-    const username = newUser?.displayName
+  const { course_name, course_fee } = useLoaderData();
+  const { newUser, handleStore } = useContext(Context);
+  const [errMsg, setErrMsg] = useState();
+  const [ref_id, setRef_id] = useState();
+  const navigate = useNavigate();
+  const rootAxios = useAxios();
+  const email = newUser?.email;
+  const username = newUser?.displayName;
   const {
     register,
     handleSubmit,
@@ -23,22 +23,29 @@ const ToEnroll = () => {
     formState: { errors },
   } = useForm();
 
-  const ref_key = watch("ref_key")
+  const inserted_ref_id = watch("inserted_ref_id");
+  useEffect(() => {
+    rootAxios.get(`/user/email/${email}`).then((res) => setRef_id(res.data));
+  }, []);
 
   const onSubmit = (data) => {
     const { course_name, course_fee } = data;
-    rootAxios.get(`/user/${ref_key}`)
-    .then(()=>{
-      handleStore(username, email, course_name, course_fee)
-      navigate("/course/conform-payment")
-    })
-    .catch(()=>setErrMsg("Invalid Reffer Key"))
+    rootAxios.get(`/user/${inserted_ref_id}`)
+    .then(() => {
+      if (ref_id === parseInt(inserted_ref_id)) {
+        setErrMsg(
+          "You can't use your own reffer id <br> Collect anoter user reffer id or, <br> Don't use reffer id. It's optional"
+        );
+      } else {
+        navigate("/course/conform-payment")
+      }
+    }).catch(()=>setErrMsg("Invalid reffer id. <br> Collect correct reffer id or, <br> Don't use reffer id. It's optional"))
   };
 
   useEffect(() => {
     AOS.init({
       duration: 1000,
-      easing: "ease-in-out", 
+      easing: "ease-in-out",
     });
   }, []);
 
@@ -46,7 +53,7 @@ const ToEnroll = () => {
     <div className="py-myMargin flex justify-center " data-aos="fade-left">
       <div className="p-10 border rounded-lg shadow-xl">
         <form onSubmit={handleSubmit(onSubmit)} className="pt-3">
-        <p>Name</p>
+          <p>Name</p>
           <input
             type="text"
             value={username}
@@ -81,8 +88,8 @@ const ToEnroll = () => {
           <p>Reffer key</p>
           <input
             type="text"
-            placeholder="Reffer key(if you have)"
-            {...register("ref_key")}
+            placeholder="Reffer Id(if you have)"
+            {...register("inserted_ref_id")}
             className="w-64 md:w-80 h-10 px-2 rounded mb-4"
           />
           <br />

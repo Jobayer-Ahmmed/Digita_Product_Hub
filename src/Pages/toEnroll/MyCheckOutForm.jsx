@@ -20,8 +20,6 @@ const MyCheckOutForm = () => {
   const navigate = useNavigate()
   const rootAxios = useAxios()
 
-  console.log(store)
-
   const resetCardForm = () => {
     if (elements) {
       const cardNumberElement = elements.getElement(CardNumberElement);

@@ -21,7 +21,6 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
     const {email, password} = data
 
     login(email, password)
