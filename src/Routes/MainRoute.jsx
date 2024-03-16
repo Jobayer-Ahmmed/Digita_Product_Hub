@@ -64,13 +64,8 @@ const routes = createBrowserRouter([
       },
       {
         path: "/course/to-enroll/:id",
-        element: (
-          <PrivateRoute>
-            <ToEnroll />
-          </PrivateRoute>
-        ),
-        loader: async ({ params }) =>
-          fetch(`${URL}/admin/dashboard/course/${params.id}`),
+        element:<PrivateRoute><ToEnroll /></PrivateRoute>,
+        loader: async ({ params }) =>fetch(`${URL}/admin/dashboard/course/${params.id}`),
       },
       {
         path: "/course/conform-payment",

@@ -9,7 +9,7 @@ import useAxios from "../../hooks/useAxios/useAxios";
 
 const ToEnroll = () => {
   const { course_name, course_fee } = useLoaderData();
-  const { newUser, handleStore } = useContext(Context);
+  const { newUser, handleStore,  handleRefId, refId } = useContext(Context);
   const [errMsg, setErrMsg] = useState();
   const [ref_id, setRef_id] = useState();
   const navigate = useNavigate();
@@ -19,28 +19,35 @@ const ToEnroll = () => {
   const {
     register,
     handleSubmit,
-    watch,
-    formState: { errors },
+    watch
   } = useForm();
 
-  const inserted_ref_id = watch("inserted_ref_id");
-  useEffect(() => {
-    rootAxios.get(`/user/email/${email}`).then((res) => setRef_id(res.data));
-  }, []);
+  const inserted_ref_id = watch("inserted_ref_id")
+  handleRefId(inserted_ref_id)
 
   const onSubmit = (data) => {
     const { course_name, course_fee } = data;
-    rootAxios.get(`/user/${inserted_ref_id}`)
-    .then(() => {
-      if (ref_id === parseInt(inserted_ref_id)) {
-        setErrMsg(
-          "You can't use your own reffer id <br> Collect anoter user reffer id or, <br> Don't use reffer id. It's optional"
-        );
-      } else {
-        navigate("/course/conform-payment")
-      }
-    }).catch(()=>setErrMsg("Invalid reffer id. <br> Collect correct reffer id or, <br> Don't use reffer id. It's optional"))
+    handleStore(username, email, course_name, course_fee, refId)
+    if(inserted_ref_id==""){      
+      navigate("/course/conform-payment")
+    } else{
+      rootAxios.get(`/user/${inserted_ref_id}`)
+      .then(() => {
+        if (ref_id === parseInt(inserted_ref_id)) {
+          setErrMsg(
+            `You can't use your own reffer id \nCollect anoter user reffer id or, \nDon't use reffer id.\nRefer id is optional`
+          );
+        } else {
+          
+          navigate("/course/conform-payment")
+        }
+      }).catch(()=>setErrMsg(`Invalid reffer id.\nCollect correct reffer id or, \nDon't use reffer id.\nRefer id is optional`))
+    }
   };
+
+  useEffect(() => {
+    rootAxios.get(`/user/email/${email}`).then((res) => setRef_id(res.data));
+  }, []);
 
   useEffect(() => {
     AOS.init({
@@ -85,7 +92,7 @@ const ToEnroll = () => {
             className="w-64 md:w-80 h-10 px-2 rounded mb-4"
           />
           <br />
-          <p>Reffer key</p>
+          <p>Reffer Id</p>
           <input
             type="text"
             placeholder="Reffer Id(if you have)"
@@ -93,7 +100,13 @@ const ToEnroll = () => {
             className="w-64 md:w-80 h-10 px-2 rounded mb-4"
           />
           <br />
-          {errMsg && <p className="text-red-500 text-lg">{errMsg}</p>}
+          {errMsg && (
+  <div className="text-red-500 text-lg">
+    {errMsg.split('\n').map((line, index) => (
+      <p key={index}>{line}</p>
+    ))}
+  </div>
+)}
 
           <input
             type="submit"

@@ -20,6 +20,8 @@ const MyCheckOutForm = () => {
   const navigate = useNavigate()
   const rootAxios = useAxios()
 
+  console.log(store)
+
   const resetCardForm = () => {
     if (elements) {
       const cardNumberElement = elements.getElement(CardNumberElement);
@@ -59,7 +61,7 @@ const MyCheckOutForm = () => {
       console.log("payment error : ", error);
       setErr(error.message);
     } else {
-      console.log("payment method : ", paymentMethod);
+      // console.log("payment method : ", paymentMethod);
       setErr("");
       resetCardForm() 
 

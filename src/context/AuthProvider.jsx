@@ -15,6 +15,7 @@ const AuthProvider = ({ children }) => {
   const [newUser, setNewUser] = useState();
   const [loading, setLoading] = useState(true);
   const [store, setStore] = useState({})
+  const [refId, setRefId] = useState()
   
   const createUser = (email, password) => {
     setLoading(true);
@@ -30,9 +31,14 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
-  const handleStore =(name, email, course_name, course_fee)=>{
-    console.log(name, email, course_name, course_fee)
-    return setStore({name, email, course_name, course_fee})    
+  const handleRefId=(refId)=>{
+    console.log(refId)
+    return setRefId(refId)
+  }
+
+  const handleStore =(name, email, course_name, course_fee, ref_id)=>{
+    // console.log(name, email, course_name, course_fee)
+    return setStore({name, email, course_name, course_fee, ref_id})    
   }
 
 
@@ -54,6 +60,8 @@ const AuthProvider = ({ children }) => {
     loading,
     store,
     handleStore,
+    handleRefId,
+    refId
   };
 
   return <Context.Provider value={contextData}>{children}</Context.Provider>;
