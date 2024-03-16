@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../Layouts/MainLayout";
 import Home from "../Pages/Home/Home/Home";
-import Register from "../Pages/Register/Register.jsx"
+import Register from "../Pages/Register/Register.jsx";
 import Login from "../Pages/Login/Login.jsx";
 import ErrorPage from "../Pages/Error/ErrorPage.jsx";
 import AdminPanel from "../Layouts/AdminPanel.jsx";
@@ -22,105 +22,167 @@ import Payment from "../Pages/toEnroll/Payment.jsx";
 import EditUsername from "../Pages/editProfile/EditUsername.jsx";
 import EditImage from "../Pages/editProfile/EditImage.jsx";
 import PrivateRoute from "./PrivateRoute.jsx";
-
+import Caution from "../Shared/Caution.jsx";
+import AdminRoute from "./AdminRoute.jsx";
 
 const routes = createBrowserRouter([
-    {
-        path:"/",
-        element:<MainLayout/>,
-        errorElement:<ErrorPage/>,
-        children:[
-            {
-                path:"/",
-                element:<Home/>,
-            },
-            {
-                path:"/register",
-                element:<Register/>
-            },
-            {
-                path:"/login",
-                element:<Login/>
-            },
+  {
+    path: "/",
+    element: <MainLayout />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
 
-            {
-                path: "/profile",
-                element:<PrivateRoute><Profile/></PrivateRoute>
-            },
-            {
-                path:"/course/:id",
-                element: <PrivateRoute><CardDetails/></PrivateRoute>, 
-                loader: async ({params})=> fetch(`${URL}/admin/dashboard/course/${params.id}`)
-            },
-            {
-                path:"/course/to-enroll/:id",
-                element:<PrivateRoute><ToEnroll/></PrivateRoute>,
-                loader: async ({params})=> fetch(`${URL}/admin/dashboard/course/${params.id}`)
-            },
-            {
-                path:"/course/conform-payment",
-                element:<PrivateRoute><Payment/></PrivateRoute>
-            },
-            {
-                path:"/edit-username",
-                element:<PrivateRoute><EditUsername/></PrivateRoute>
-            },
-            {
-                path:"/edit-image",
-                element:<PrivateRoute><EditImage/></PrivateRoute>
-            }
+      {
+        path: "/profile",
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/course/:id",
+        element: (
+          <PrivateRoute>
+            <CardDetails />
+          </PrivateRoute>
+        ),
+        loader: async ({ params }) =>
+          fetch(`${URL}/admin/dashboard/course/${params.id}`),
+      },
+      {
+        path: "/course/to-enroll/:id",
+        element: (
+          <PrivateRoute>
+            <ToEnroll />
+          </PrivateRoute>
+        ),
+        loader: async ({ params }) =>
+          fetch(`${URL}/admin/dashboard/course/${params.id}`),
+      },
+      {
+        path: "/course/conform-payment",
+        element: (
+          <PrivateRoute>
+            <Payment />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/edit-username",
+        element: (
+          <PrivateRoute>
+            <EditUsername />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/edit-image",
+        element: (
+          <PrivateRoute>
+            <EditImage />
+          </PrivateRoute>
+        ),
+      },
+    ],
+  },
+  {
+    path: "/admin",
+    element: <AdminPanel />,
+    children: [
+      {
+        path: "/admin",
+        element: <AdminLogin />,
+      },
+      {
+        path: "/admin/dashboard",
+        element: (
+          <AdminRoute>
+            <Dashboard />
+          </AdminRoute>
+        ),
+        children: [
+          {
+            path: "/admin/dashboard",
+            element: (
+              <AdminRoute>
+                <DashboardHome />
+              </AdminRoute>
+            ),
+          },
+          {
+            path: "/admin/dashboard/course/add",
+            element: (
+              <AdminRoute>
+                <AddCourse />
+              </AdminRoute>
+            ),
+          },
+          {
+            path: "/admin/dashboard/course",
+            element: (
+              <AdminRoute>
+                <SeeCourse />
+              </AdminRoute>
+            ),
+          },
+          {
+            path: "/admin/dashboard/course/:id",
+            element: (
+              <AdminRoute>
+                <EditCourse />
+              </AdminRoute>
+            ),
+            loader: async ({ params }) =>
+              fetch(`${URL}/admin/dashboard/course/${params.id}`),
+          },
+          {
+            path: "/admin/dashboard/event/add",
+            element: (
+              <AdminRoute>
+                <AddEvent />
+              </AdminRoute>
+            ),
+          },
+          {
+            path: "/admin/dashboard/event",
+            element: (
+              <AdminRoute>
+                <SeeEvent />
+              </AdminRoute>
+            ),
+          },
+          {
+            path: "/admin/dashboard/event/:id",
+            element: (
+              <AdminRoute>
+                <EditEvent />
+              </AdminRoute>
+            ),
+            loader: async ({ params }) =>
+              fetch(`${URL}/admin/dashboard/event/${params.id}`),
+          },
+        ],
+      },
+    ],
+  },
 
-        ]
-    },
-    {
-        path:"/admin",
-        element:<AdminPanel/>,
-        children:[
-            {
-                path: "/admin",
-                element: <AdminLogin/>
-            },
-            {
-                path:"/admin/dashboard",
-                element:<Dashboard/>,
-                children:[
-                    {
-                        path:"/admin/dashboard",
-                        element:<DashboardHome/>
-                    },
-                    {
-                        path:"/admin/dashboard/course/add",
-                        element:<AddCourse/>
-                    },
-                    {
-                        path:"/admin/dashboard/course",
-                        element:<SeeCourse/>
+  {
+    path: "/caution",
+    element: <Caution />,
+  },
+]);
 
-                    },
-                    {
-                        path:"/admin/dashboard/course/:id",
-                        element: <EditCourse/>,
-                        loader: async ({params})=> fetch(`${URL}/admin/dashboard/course/${params.id}`)
-                    },
-                    {
-                        path:"/admin/dashboard/event/add",
-                        element:<AddEvent/>
-                    },
-                    {
-                        path:"/admin/dashboard/event",
-                        element: <SeeEvent/>
-                    },
-                    {
-                        path:"/admin/dashboard/event/:id",
-                        element: <EditEvent/>,
-                        loader: async ({params})=> fetch(`${URL}/admin/dashboard/event/${params.id}`)
-                    },
-
-                ]
-            }
-        ]
-    }
-
-])
-
-export default routes
+export default routes;
