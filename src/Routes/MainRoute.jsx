@@ -24,6 +24,8 @@ import EditImage from "../Pages/editProfile/EditImage.jsx";
 import PrivateRoute from "./PrivateRoute.jsx";
 import Caution from "../Shared/Caution.jsx";
 import AdminRoute from "./AdminRoute.jsx";
+import EnrollmentDetails from "../adminSystem/dashboard/enrollmentDetails/EnrollmentDetails.jsx";
+import axios from "axios";
 
 const routes = createBrowserRouter([
   {
@@ -166,9 +168,13 @@ const routes = createBrowserRouter([
                 <EditEvent />
               </AdminRoute>
             ),
-            loader: async ({ params }) =>
-              fetch(`${URL}/admin/dashboard/event/${params.id}`),
+            loader: ({ params }) =>
+              axios.get(`${URL}/admin/dashboard/event/${params.id}`),
           },
+          {
+            path:"/admin/dashboard/enrollment",
+            element:<EnrollmentDetails/>,
+          }
         ],
       },
     ],
