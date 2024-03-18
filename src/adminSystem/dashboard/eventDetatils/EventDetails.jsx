@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import useAxios from "../../../hooks/useAxios/useAxios";
 
-const EnrollmentDetails = () => {
+const EventDetails = () => {
   const [count, setCount] = useState();
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
@@ -11,13 +11,13 @@ const EnrollmentDetails = () => {
   useEffect(() => {
     rootAxios
       .get(
-        `/admin/dashboard/enrollment?page=${currentPage}&size=${itemsPerPage}`
+        `/admin/dashboard/event-registration?page=${currentPage}&size=${itemsPerPage}`
       )
       .then((res) => setAllData(res.data));
   }, [currentPage, itemsPerPage]);
   useEffect(() => {
     rootAxios
-      .get("/admin/dashboard/enrollment/count")
+      .get("/admin/dashboard/event-registration/count")
       .then((res) => setCount(res.data.count));
   }, []);
 
@@ -38,7 +38,7 @@ const EnrollmentDetails = () => {
   };
   return (
     <div>
-      <h1 className="text-2xl mb-5">EnrollmentDetails</h1>
+      <h1 className="text-2xl mb-5">eventDetails</h1>
 
       <div className="overflow-x-auto">
         <table className="table">
@@ -46,7 +46,7 @@ const EnrollmentDetails = () => {
             <tr>
               <th>Name</th>
               <th>Email</th>
-              <th>Course</th>
+              <th>Event</th>
             </tr>
           </thead>
           <tbody>
@@ -54,7 +54,7 @@ const EnrollmentDetails = () => {
               <tr key={data._id}>
                 <td>{data.name}</td>
                 <td>{data.email}</td>
-                <td>{data.course_name}</td>
+                <td>{data.event_name}</td>
               </tr>
             ))}
           </tbody>
@@ -95,4 +95,4 @@ const EnrollmentDetails = () => {
   );
 };
 
-export default EnrollmentDetails;
+export default EventDetails;

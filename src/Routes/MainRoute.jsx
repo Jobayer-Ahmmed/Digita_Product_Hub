@@ -26,6 +26,7 @@ import Caution from "../Shared/Caution.jsx";
 import AdminRoute from "./AdminRoute.jsx";
 import EnrollmentDetails from "../adminSystem/dashboard/enrollmentDetails/EnrollmentDetails.jsx";
 import axios from "axios";
+import EventDetails from "../adminSystem/dashboard/eventDetatils/EventDetails.jsx";
 
 const routes = createBrowserRouter([
   {
@@ -172,8 +173,12 @@ const routes = createBrowserRouter([
               axios.get(`${URL}/admin/dashboard/event/${params.id}`),
           },
           {
-            path:"/admin/dashboard/enrollment",
+            path:"/admin/dashboard/enrollment-details",
             element:<EnrollmentDetails/>,
+          },
+          {
+            path:"/admin/dashboard/event-details",
+            element:<EventDetails/>
           }
         ],
       },
