@@ -113,7 +113,7 @@ const Register = () => {
   }, []);
 
   return (
-    <div className="py-yPadding flex justify-center " data-aos="fade-left">
+    <div className="py-yPadding flex justify-center " data-aos="zoom-in">
       <div className="p-10 border rounded-lg shadow-xl">
         <h2 className="text-2xl font-medium pb-3 border-b mb-5">
           Registraion Now

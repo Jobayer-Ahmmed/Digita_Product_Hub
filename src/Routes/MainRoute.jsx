@@ -27,6 +27,7 @@ import AdminRoute from "./AdminRoute.jsx";
 import EnrollmentDetails from "../adminSystem/dashboard/enrollmentDetails/EnrollmentDetails.jsx";
 import axios from "axios";
 import EventDetails from "../adminSystem/dashboard/eventDetatils/EventDetails.jsx";
+import Card from "../Pages/Card/Card.jsx";
 
 const routes = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const routes = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path:"/courses",
+        element:<Card/>
       },
       {
         path: "/register",
@@ -57,11 +62,7 @@ const routes = createBrowserRouter([
       },
       {
         path: "/course/:id",
-        element: (
-          <PrivateRoute>
-            <CardDetails />
-          </PrivateRoute>
-        ),
+        element:<CardDetails />,
         loader: async ({ params }) =>
           fetch(`${URL}/admin/dashboard/course/${params.id}`),
       },
@@ -179,7 +180,8 @@ const routes = createBrowserRouter([
           {
             path:"/admin/dashboard/event-details",
             element:<EventDetails/>
-          }
+          },
+
         ],
       },
     ],

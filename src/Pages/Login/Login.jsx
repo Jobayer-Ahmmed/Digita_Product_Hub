@@ -48,15 +48,15 @@ const Login = () => {
 
   useEffect(() => {
     AOS.init({
-      duration: 1000, // Animation duration in milliseconds
-      easing: "ease-in-out", // Easing function for the animation
+      duration: 1000,
+      easing: "ease-in-out",
     });
   }, []);
 
   return (
     <div
       className="py-yPadding w-full flex justify-center "
-      data-aos="fade-right"
+      data-aos="zoom-in"
     >
       <div className="p-10 border rounded-lg shadow-xl">
         <h2 className="text-2xl font-medium pb-3 border-b mb-5">Login Now</h2>

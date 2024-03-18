@@ -1,6 +1,4 @@
-import { Outlet } from "react-router-dom";
 import Banner from "../Banner/Banner";
-import Card from "../../Card/Card";
 import useAxios from "../../../hooks/useAxios/useAxios";
 import { useContext, useEffect, useState } from "react";
 import { Context } from "../../../context/AuthProvider";
@@ -9,7 +7,6 @@ const Home = () => {
   const { newUser } = useContext(Context);
   const [event, setEvent] = useState([]);
   const [msg, setMsg] = useState('');
-  const title = 'Our Courses';
   const rootAxios = useAxios();
   const email = newUser?.email;
 
@@ -33,8 +30,6 @@ const Home = () => {
   return (
     <div className="-z-20">
       <Banner />
-      <Card title={title} />
-      <Outlet />
       <div className="w-[300px] md:w-[700px] mx-auto my-myMargin">
         {event ? (
           <>

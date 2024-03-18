@@ -58,13 +58,13 @@ const EditEvent = () => {
 
   useEffect(() => {
     AOS.init({
-      duration: 1000, // Animation duration in milliseconds
-      easing: "ease-in-out", // Easing function for the animation
+      duration: 1000,
+      easing: "ease-in-out",
     });
   }, []);
 
   return (
-    <div className="mb-myMargin flex justify-center " data-aos="fade-left">
+    <div className="mb-myMargin flex justify-center " data-aos="fade-down">
       <div className="p-10 border rounded-lg shadow-xl">
         <h2 className="text-2xl font-medium pb-3 border-b mb-5">
           Give the Event Information

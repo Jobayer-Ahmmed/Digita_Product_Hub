@@ -14,7 +14,7 @@ const Card = ({ title}) => {
   },[])
 
   return (
-    <div className="my-myMargin px-xPadding2 md:px-xPadding">
+    <div className="py-myMargin px-xPadding2 md:px-xPadding">
       <h1 className="text-4xl font-medium text-center mb-titleMargin">
         {title}
       </h1>

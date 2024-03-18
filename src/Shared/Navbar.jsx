@@ -19,17 +19,18 @@ const Navbar = () => {
   };
   useEffect(() => {
     AOS.init({
-      duration: 1000, // Animation duration in milliseconds
-      easing: "ease-in-out", // Easing function for the animation
+      duration: 1000, 
+      easing: "ease-in-out",
     });
   }, []);
-
-
 
   const navlinks = (
     <>
       <li data-aos="zoom-in">
         <NavLink>Home</NavLink>
+      </li>
+      <li data-aos="zoom-in">
+        <NavLink to="/courses">Courses</NavLink>
       </li>
       {
         !email && <>
