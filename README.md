@@ -1,6 +1,9 @@
 # Digita(Project)
-- 
-- 
+- Payment system
+- Pagination system with page size controls
+- Admin panel link: https://digital-8d6fb.web.app/admin
+- Admin email: admin@mail.com
+- Admin password: 123@Aa
 - Form validation is included in this project
 - Whole project is responsive
 ##### Technologies:

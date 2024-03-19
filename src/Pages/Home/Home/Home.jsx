@@ -2,6 +2,8 @@ import Banner from "../Banner/Banner";
 import useAxios from "../../../hooks/useAxios/useAxios";
 import { useContext, useEffect, useState } from "react";
 import { Context } from "../../../context/AuthProvider";
+import OurHeros from "../../ourHeros/OurHeros";
+import Counter from "../counter/Counter";
 
 const Home = () => {
   const { newUser } = useContext(Context);
@@ -30,6 +32,7 @@ const Home = () => {
   return (
     <div className="-z-20">
       <Banner />
+      <Counter/>
       <div className="w-[300px] md:w-[700px] mx-auto my-myMargin">
         {event ? (
           <>
@@ -59,6 +62,7 @@ const Home = () => {
         )}
         {msg && <p className="text-red-600 mt-5">{msg}</p>}
       </div>
+      <OurHeros/>
     </div>
   );
 };

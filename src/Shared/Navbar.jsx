@@ -5,7 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import { Context } from "../context/AuthProvider";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import logo from "../assets/logo.png"
+import logo1 from "../assets/logo/image-and-wrten-logo.png"
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(true); 
@@ -45,7 +45,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="fixed lg:px-20 px-[10%] flex items-center justify-between bg-opacity-70 bg-priColor w-full h-16 text-white  z-50 ">
+    <div className="lg:px-20 px-[10%] flex items-center justify-between bg-gray-300 w-full h-16 text-gray-600  z-50 ">
       <div className=" flex items-center gap-5">
         <div className="block lg:hidden">
           {toggle ? (
@@ -58,11 +58,15 @@ const Navbar = () => {
             </button>
           )}
         </div>
-        <span><img className="w-20" src={logo} alt="" /></span>
+
+        {/* logo */}
+        <span><img className="w-36" src={logo1} alt="" /></span>
       </div>
+
+      {/* drop down */}
       <div>
         <ul
-          className={` z-10 absolute left-5  flex flex-col gap-5 rounded text-center p-10 bg-priColor text-xl font-medium ${
+          className={` z-10 absolute left-5  flex flex-col gap-5 rounded text-center p-10 bg-gray-300 shadow-2xl text-xl font-medium ${
             toggle
               ? "absolute -top-96 transition-[0.9]"
               : "  top-16 transition-[0.7]"
@@ -72,13 +76,14 @@ const Navbar = () => {
         </ul>
         <div className=" flex items-center  py-5 relative ">
           <div className="w-full flex justify-between">
-            <div className="rounded text-lg hidden lg:block font-medium text-center text-white ">
+            <div className="rounded text-lg hidden lg:block font-medium text-center text-gray-600 ">
               <ul className="flex justify-center gap-10">{navlinks}</ul>
             </div>
           </div>
         </div>
       </div>
 
+          {/* user profile */}
       {email ? (
         <div className="dropdown dropdown-end">
           <div tabIndex={0} role="button">
@@ -90,10 +95,10 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="dropdown-content z-[1] text-lg menu py-4 pl-10 shadow bg-base-100 rounded-box w-52"
+            className="dropdown-content z-[1] text-lg menu py-4 pl-10  bg-gray-300 shadow-2xl rounded-box w-52"
           >
             <li>{newUser.displayName}</li>
-            <li className="cursor-pointer mt-3"><Link to="/profile">Profile</Link></li>
+            <li onClick={()=>navigate("/profile")} className="cursor-pointer mt-3">Profile</li>
             <li onClick={handleLogout} className="cursor-pointer mt-3">
               Log Out
             </li>
